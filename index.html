@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Round Robin Simulator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app-layout">
+  <!-- Title Bar -->
+  <div class="title-bar">
+    <h1 class="stylish-regular">Round Robin Simulator</h1>
+    <div class="subtitle">CPU Scheduling Visualizer</div>
+  </div>
+  <!-- Main Content -->
+  <div class="main-grid">
+    <!-- Left Pane (Inputs + CPU + Queue) -->
+    <div class="left-pane">
+      <div class="input-row">
+        <label for="numProcesses">No. of Processes:</label>
+        <input type="number" id="numProcesses" min="1" placeholder="e.g., 4">
+        <button id="generateBtn">Generate</button>
+      </div>
+      <div id="processInputs"></div>
+      <div class="input-row">
+        <label for="timeQuantum">Time Quantum:</label>
+        <input type="number" id="timeQuantum" value="2" min="1">
+        <label for="speed">Speed(ms/unit):</label>
+        <input type="number" id="speed" value="650" min="100">
+      </div>
+      <!-- CPU & Ready Queue -->
+      <div class="cpu">
+        <div class="label">CPU</div>
+        <div id="cpuPid" class="pid">—</div>
+        <div id="cpuSub" class="sub">Idle</div>
+      </div>
+      <div class="queue-area">
+        <div class="queue-header"><strong>Ready Queue</strong></div>
+        <div id="readyQueue" class="queue"></div>
+      </div>
+    </div>
+    <!-- Right Pane (Table) -->
+    <div class="right-pane">
+      <table>
+        <thead>
+          <tr>
+            <th>PID</th>
+            <th>Burst</th>
+            <th>Arrival</th>
+            <th>Remaining</th>
+            <th>Waiting</th>
+            <th>Turnaround</th>
+          </tr>
+        </thead>
+        <tbody id="statsBody"></tbody>
+      </table>
+      <div class="summary">
+        <div>Avg Waiting: <span id="avgWaiting">0.00</span></div>
+        <div>Avg Turnaround: <span id="avgTurn">0.00</span></div>
+      </div>
+    </div>
+  </div>
+  <!-- Gantt Chart -->
+  <div class="gantt-area">
+    <div class="gantt-header"><strong>Gantt Chart</strong></div>
+    <div id="ganttTrack" class="gantt"></div>
+    <div id="ganttTimeline" class="gantt-timeline"></div>
+  </div>
+  <!-- Control Pane -->
+  <div class="control-pane">
+    <div class="btn-row">
+      <button id="loadBtn" disabled>Load</button>
+      <button id="stepBtn" disabled>Step</button>
+      <button id="playBtn">Play</button>
+      <button id="resetBtn">Reset</button>
+    </div>
+    <div class="explain" id="explain">Generate processes to begin.</div>
+    <div id="timeNow">t = 0</div>
+  </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
